@@ -1,6 +1,23 @@
 @extends('layouts.app')
 @section('title', 'Import Data Excel')
 @section('content')
+@if ($errors->any())
+<div class="alert alert-danger">
+  <ul>
+    @foreach ($errors->all() as $error)
+    <li>{{ $error }}</li>
+    @endforeach
+  </ul>
+</div>
+@endif
+
+@if (session('success'))
+<div class="alert alert-success">
+  {{ session('success') }}
+</div>
+@endif
+
+
 <div class="relative z-20 container mt-10">
   <div class="w-full max-w-lg mx-auto bg-white shadow-md rounded-lg p-8">
     <h2 class="text-2xl font-semibold mb-6">Import Data Excel</h2>

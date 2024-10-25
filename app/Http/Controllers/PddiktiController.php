@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pddikti;
+use App\Models\ImportHistory;
 use App\Imports\PddiktiImport;
 use Illuminate\Http\Request;
 use App\Exports\PddiktiExport;
@@ -92,11 +93,20 @@ class PddiktiController extends Controller
             'file' => 'required|mimes:xlsx,xls,csv',
         ]);
 
-        // Mengimpor file Excel
-        //Excel::import(new PddiktiImport, $request->file('file')->store('temp'));
-        Excel::import(new PddiktiImport, $request->file('file'));
-        // Redirect ke halaman sebelumnya
-        return redirect()->back()->with('success', 'Data berhasil diimpor.');
+        $file = $request->file('file');
+        $import = new PddiktiImport;
+
+        Excel::import($import, $file);
+
+        ImportHistory::create([
+            'file_name' => $file->getClientOriginalName(),
+            'total_rows' => $import->getTotalRows(), // Implement this method in your import class
+            'successful_imports' => $import->getSuccessfulImports(), // Implement this method
+            'failed_imports' => $import->getFailedImports(), // Implement this method if necessary
+            'status' => 'Completed',
+        ]);
+
+        return back()->with('success', 'File imported successfully.');
     }
 
     public function show($id_pd)

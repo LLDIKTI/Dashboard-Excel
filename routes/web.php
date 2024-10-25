@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PddiktiController;
+use App\Http\Controllers\ImportHistoryController;
 
 // untuk ekspor pddikti ke excel
 use App\Exports\PddiktiExport;
@@ -13,3 +14,4 @@ Route::post('/import-pddikti', [PddiktiController::class, 'import'])->name('pddi
 Route::get('/import-pddikti', [PddiktiController::class, 'showImportForm'])->name('pddikti.showImportForm');
 Route::get('/mahasiswa/search', [PddiktiController::class, 'index'])->name('mahasiswa.search');
 Route::get('/mahasiswa/{id_pd}', [PddiktiController::class, 'show'])->name('mahasiswa.show');
+Route::get('/import-history', [ImportHistoryController::class, 'index']);

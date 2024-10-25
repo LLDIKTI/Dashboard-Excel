@@ -7,7 +7,7 @@
     <a href="/import-pddikti" class="flex items-center p-2 text-slate-700 font-bold hover:bg-gray-700 hover:text-white rounded">
       <i class="fa-solid fa-file-import fa-xl mr-3"></i>Import Excel
     </a>
-    <a href="#" class="flex items-center p-2 text-slate-700 font-bold hover:bg-gray-700 hover:text-white rounded">
+    <a href="/import-history" class="flex items-center p-2 text-slate-700 font-bold hover:bg-gray-700 hover:text-white rounded">
       <i class="fa-solid fa-clock-rotate-left fa-xl mr-3"></i> Riwayat Import
     </a>
   </nav>
