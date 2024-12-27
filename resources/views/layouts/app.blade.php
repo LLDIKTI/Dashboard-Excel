@@ -14,7 +14,7 @@
 
   <!-- header -->
   <!-- Circle Effects -->
-  <div class="fixed inset-0 overflow-hidden">
+  <div class="fixed inset-0">
     <!-- Circle 1 (Top-left) -->
     <div class="w-[460px] h-[400px] bg-[#65c1d4] rounded-full absolute blur-[200px] top-0 left-0"></div>
     <!-- Circle 2 (Slightly lower) -->
@@ -29,7 +29,7 @@
     @include('partials.sidebar')
 
     <!-- Main content -->
-    <div class="flex-1 p-6">
+    <div id="mainContent" class=" p-6 transition-all duration-300">
       @yield('content')
     </div>
 
@@ -44,6 +44,7 @@
       const sidebarTitle = document.getElementById('sidebarTitle');
       const sidebarMenu = document.querySelectorAll('.sidebar-text');
       const sidebarIcons = document.querySelectorAll('.sidebar-icon');
+      const contentDashboard = document.getElementById('contentDashboard');
 
       toggleSidebar.addEventListener('click', () => {
         sidebar.classList.toggle('w-16');
@@ -61,6 +62,14 @@
           } else {
             icon.classList.remove('fa-md', 'mr-0');
             icon.classList.add('fa-lg', 'mr-3');
+          }
+          // Manipulate the content dashboard width based on sidebar state
+          if (sidebar.classList.contains('w-16')) {
+            contentDashboard.classList.remove('w-[80vw]');
+            contentDashboard.classList.add('w-[90vw]');
+          } else {
+            contentDashboard.classList.remove('w-[90vw]');
+            contentDashboard.classList.add('w-[80vw]');
           }
         });
       });

@@ -3,7 +3,7 @@
 
 @section('content')
 <h1 class="text-4xl font-extrabold font-grey-900 mb-6">Dashboard</h1>
-<div class="container mx-auto px-4 py-4 bg-white/10 backdrop-blur-lg border border-white-600 rounded-2xl w-[80vw]">
+<div id="contentDashboard" class="container px-4 py-4 bg-white/10 backdrop-blur-lg border border-white-600 rounded-2xl w-[80vw]">
   <!-- success message alert update -->
   <div class="grid grid-cols-3 gap-4 mb-4">
     <div class="border-dashed border-2 border-white p-6 rounded-md shadow-sm">

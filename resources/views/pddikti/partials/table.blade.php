@@ -1,6 +1,6 @@
 @if($data->count() > 0)
 <div class="overflow-x-auto"">
-  <table class=" table-auto w-[40vw] border-collapse">
+  <table class=" table-auto border-collapse">
   <thead>
     <tr class="bg-white/40">
       <th class="px-6 py-3 text-left border-b rounded-tl-xl">NO.</th>
