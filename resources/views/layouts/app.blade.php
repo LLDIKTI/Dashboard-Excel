@@ -29,7 +29,7 @@
     @include('partials.sidebar')
 
     <!-- Main content -->
-    <div id="mainContent" class=" p-6 transition-all duration-300">
+    <div id="mainContent" class=" w-[80vw] p-6 transition-all duration-300">
       @yield('content')
     </div>
 
@@ -44,9 +44,25 @@
       const sidebarTitle = document.getElementById('sidebarTitle');
       const sidebarMenu = document.querySelectorAll('.sidebar-text');
       const sidebarIcons = document.querySelectorAll('.sidebar-icon');
-      const contentDashboard = document.getElementById('contentDashboard');
+      const mainContent = document.getElementById('mainContent');
+
+      // Cek status sidebar yang disimpan di localStorage
+      const sidebarState = localStorage.getItem('sidebarState');
+      if (sidebarState === 'collapsed') {
+        sidebar.classList.add('w-16');
+        sidebar.classList.remove('w-64');
+        mainContent.classList.remove('w-[80vw]');
+        mainContent.classList.add('w-[94vw]');
+        sidebarTitle.classList.add('hidden');
+        sidebarMenu.forEach(item => item.classList.add('hidden'));
+        sidebarIcons.forEach(icon => {
+          icon.classList.remove('fa-lg', 'mr-3');
+          icon.classList.add('fa-md', 'mr-0');
+        });
+      }
 
       toggleSidebar.addEventListener('click', () => {
+        // Toggle sidebar width and visibility of content
         sidebar.classList.toggle('w-16');
         sidebar.classList.toggle('w-64');
         sidebarTitle.classList.toggle('hidden');
@@ -63,15 +79,18 @@
             icon.classList.remove('fa-md', 'mr-0');
             icon.classList.add('fa-lg', 'mr-3');
           }
-          // Manipulate the content dashboard width based on sidebar state
-          if (sidebar.classList.contains('w-16')) {
-            contentDashboard.classList.remove('w-[80vw]');
-            contentDashboard.classList.add('w-[90vw]');
-          } else {
-            contentDashboard.classList.remove('w-[90vw]');
-            contentDashboard.classList.add('w-[80vw]');
-          }
         });
+
+        // Manipulate the content dashboard width based on sidebar state
+        if (sidebar.classList.contains('w-16')) {
+          mainContent.classList.remove('w-[80vw]');
+          mainContent.classList.add('w-[94vw]');
+          localStorage.setItem('sidebarState', 'collapsed'); // Save collapsed state
+        } else {
+          mainContent.classList.remove('w-[94vw]');
+          mainContent.classList.add('w-[80vw]');
+          localStorage.setItem('sidebarState', 'expanded'); // Save expanded state
+        }
       });
     });
   </script>

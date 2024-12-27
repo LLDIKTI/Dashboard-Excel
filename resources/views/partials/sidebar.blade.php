@@ -7,7 +7,7 @@
     </button>
 
     <!-- Navigasi -->
-    <nav id="sidebarMenu" class="space-y-4">
+    <nav id="sidebarMenu" class="space-y-8">
       <a href="/" class="flex items-center p-2 text-slate-700 font-bold hover:bg-gray-700 hover:text-white rounded">
         <i class="fa-solid fa-house fa-lg mr-3 sidebar-icon"></i>
         <span class="sidebar-text">Dashboard</span>
