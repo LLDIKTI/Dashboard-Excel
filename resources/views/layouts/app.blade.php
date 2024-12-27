@@ -37,6 +37,36 @@
 
     <!-- footer -->
   </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggleSidebar = document.getElementById('toggleSidebar');
+      const sidebar = document.getElementById('sidebar');
+      const sidebarTitle = document.getElementById('sidebarTitle');
+      const sidebarMenu = document.querySelectorAll('.sidebar-text');
+      const sidebarIcons = document.querySelectorAll('.sidebar-icon');
+
+      toggleSidebar.addEventListener('click', () => {
+        sidebar.classList.toggle('w-16');
+        sidebar.classList.toggle('w-64');
+        sidebarTitle.classList.toggle('hidden');
+
+        sidebarMenu.forEach(item => {
+          item.classList.toggle('hidden');
+        });
+
+        sidebarIcons.forEach(icon => {
+          if (sidebar.classList.contains('w-16')) {
+            icon.classList.remove('fa-lg');
+            icon.classList.add('fa-md', 'mr-0');
+          } else {
+            icon.classList.remove('fa-md', 'mr-0');
+            icon.classList.add('fa-lg', 'mr-3');
+          }
+        });
+      });
+    });
+  </script>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
