@@ -64,10 +64,15 @@ class Pddikti extends Model
 
     public function getMasaStudiAttribute()
     {
-        // Mengambil tanggal masuk dari field tgl_masuk_sp
-        $tglMasuk = Carbon::parse($this->tgl_masuk_sp);
+        // Jika tgl_masuk_sp adalah serial date dari Excel
+        $serialDate = (int) $this->tgl_masuk_sp; // Konversi string ke integer
+
+        // Konversi serial date ke tanggal yang valid
+        $tglMasuk = Carbon::createFromFormat('Y-m-d', '1899-12-30')->addDays($serialDate);
+
         // Menghitung tahun saat ini
         $tahunSekarang = Carbon::now();
+
         // Menghitung selisih tahun dan memastikan return dalam bentuk integer
         return (int) $tglMasuk->diffInYears($tahunSekarang);
     }

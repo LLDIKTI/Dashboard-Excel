@@ -27,5 +27,6 @@
       @endforeach
     </tbody>
   </table>
+  {{ $histories->links() }}
 </div>
 @endsection
