@@ -2,23 +2,58 @@
 @section('title', 'Data Mahasiswa')
 
 @section('content')
-<h1 class="text-4xl font-extrabold font-grey-900 mb-6">Dashboard</h1>
+<h1 class="text-4xl font-extrabold text-gray-900 mb-6">Dashboard</h1>
 <div id="contentDashboard" class="container px-4 py-4 bg-white/10 backdrop-blur-lg border border-white-600 rounded-2xl">
-  <!-- success message alert update -->
-  <div class="grid grid-cols-3 gap-4 mb-4">
-    <div class="border-dashed border-2 border-white p-6 rounded-md shadow-sm">
-      <p class="text-4xl font-bold text-indigo-600">{{$jumlahMahasiswa}}</p>
-      <p class="text-2xl">Mahasiswa</p>
+
+  <!-- Statistik utama -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+    <div class="group border-dashed border-2 border-white p-6 rounded-md shadow-sm bg-gradient-to-r from-indigo-100 via-indigo-200 to-indigo-300 hover:from-indigo-300 hover:via-indigo-400 hover:to-indigo-500 transition-all duration-300 ease-in-out">
+      <p class="text-4xl font-bold text-indigo-600 group-hover:text-white">
+        <i class="fas fa-user-graduate"></i> {{$jumlahMahasiswa}}
+      </p>
+      <p class="text-2xl text-indigo-800 group-hover:text-white">Mahasiswa</p>
+      <p class="text-sm text-indigo-600 group-hover:text-white">Pertumbuhan: +5%</p>
     </div>
-    <div class="border-dashed border-2 border-white p-6 rounded-md shadow-sm">
-      <p class="text-4xl font-bold text-red-500">{{$jumlahUniversitas}}</p>
-      <p class="text-2xl">Universitas</p>
+    <div class="group border-dashed border-2 border-white p-6 rounded-md shadow-sm bg-gradient-to-r from-red-100 via-red-200 to-red-300 hover:from-red-300 hover:via-red-400 hover:to-red-500 transition-all duration-300 ease-in-out">
+      <p class="text-4xl font-bold text-red-500 group-hover:text-white">
+        <i class="fas fa-university"></i> {{$jumlahUniversitas}}
+      </p>
+      <p class="text-2xl text-red-800 group-hover:text-white">Universitas</p>
+      <p class="text-sm text-red-600 group-hover:text-white">Pertumbuhan: +3%</p>
     </div>
-    <div class="border-dashed border-2 border-white p-6 rounded-md shadow-sm">
-      <p class="text-4xl font-bold text-blue-700">{{$jumlahProdi}}</p>
-      <p class="text-2xl">Prodi</p>
+    <div class="group border-dashed border-2 border-white p-6 rounded-md shadow-sm bg-gradient-to-r from-blue-100 via-blue-200 to-blue-300 hover:from-blue-300 hover:via-blue-400 hover:to-blue-500 transition-all duration-300 ease-in-out">
+      <p class="text-4xl font-bold text-blue-700 group-hover:text-white">
+        <i class="fas fa-book"></i> {{$jumlahProdi}}
+      </p>
+      <p class="text-2xl text-blue-800 group-hover:text-white">Prodi</p>
+      <p class="text-sm text-blue-600 group-hover:text-white">Pertumbuhan: +8%</p>
     </div>
   </div>
+
+  <!-- Daftar Universitas -->
+  <div class="mb-6">
+    <h2 class="text-2xl font-semibold mb-4">Daftar Universitas</h2>
+    <ul class="overflow-y-scroll max-h-32 border border-gray-300 bg-white rounded-lg p-4">
+      @foreach($universitasList as $universitas)
+      <li class="text-gray-700 hover:text-blue-500 transition-all">
+        <i class="fas fa-university mr-2"></i> {{ $universitas }}
+      </li>
+      @endforeach
+    </ul>
+  </div>
+
+  <!-- Daftar Prodi -->
+  <div class="mb-6">
+    <h2 class="text-2xl font-semibold mb-4">Daftar Prodi</h2>
+    <ul class="overflow-y-scroll max-h-32 border border-gray-300 bg-white rounded-lg p-4">
+      @foreach($prodiList as $prodi)
+      <li class="text-gray-700 hover:text-blue-500 transition-all">
+        <i class="fas fa-book mr-2"></i> {{ $prodi }}
+      </li>
+      @endforeach
+    </ul>
+  </div>
+
 
   @if(session('success'))
   <div class="alert alert-success">
@@ -111,4 +146,7 @@
     });
   });
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 @endsection

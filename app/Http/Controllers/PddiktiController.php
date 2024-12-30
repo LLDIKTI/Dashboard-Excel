@@ -21,6 +21,10 @@ class PddiktiController extends Controller
         $jumlahUniversitas = Pddikti::distinct()->count('nm_lemb');
         $jumlahProdi = Pddikti::distinct()->count('nm_prodi');
 
+        // Tambahan logika pertumbuhan data
+        $prevCountMahasiswa = Pddikti::where('created_at', '<', now()->subMonth())->count();
+        $growthMahasiswa = (($jumlahMahasiswa - $prevCountMahasiswa) / $prevCountMahasiswa) * 100;
+
         // Ambil list Universitas dan Prodi untuk dropdown
         $universitasList = Pddikti::distinct()->pluck('nm_lemb');
         $prodiList = Pddikti::distinct()->pluck('nm_prodi');
@@ -49,7 +53,7 @@ class PddiktiController extends Controller
             return view('pddikti.partials.table', compact('data'))->render();
         }
 
-        return view('pddikti.index', compact('data', 'jumlahMahasiswa', 'jumlahUniversitas', 'jumlahProdi', 'universitasList', 'prodiList'));
+        return view('pddikti.index', compact('data', 'jumlahMahasiswa', 'jumlahUniversitas', 'jumlahProdi', 'universitasList', 'prodiList', 'growthMahasiswa'));
     }
 
 
